@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Boilerplate</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./lib/semantic-ui/semantic.css">
+        <link rel="stylesheet/less" type="text/css" href="./project/css/style.less" />
+
+        <!-- 3rd party dependencies -->
+        <script src="./lib/jquery-3.4.0.min.js"></script>
+        <script src="./lib/semantic-ui/semantic.min.js"></script>
+        <script src="./lib/semantic-ui/components/transition.js"></script>
+        <script src="./lib/less.js"></script>
+    </head>
+
+    <body>
+        <div class="ui segments controls">
+            <div class="ui basic segment" id="header-bar">
+                Boilerplate
+            </div>
+            <div class="ui basic segment body" id="body-bar">
+                <div class="ui basic segment tabs">
+                    <div class="ui icon left floated button" id="left-sidebar-button">
+                        <i class="cog icon"></i>
+                        <i class="double angle right icon"></i>
+                    </div>
+                    <div class="ui icon right floated button" id="right-sidebar-button">
+                        <i class="double angle left icon"></i>
+                        <i class="chart line icon"></i>
+                    </div>
+                </div>
+                <div id="app">
+                    <div class="ui wide left sidebar" id="left-sidebar">
+                        <div class='ui basic segment head'>
+                            Left Panel
+                            <div class="ui icon button" id="left-sidebar-chevron">
+                                <i class="double angle left icon invisible"></i>
+                            </div>
+                        </div>
+                        <div class="ui basic segment" id="left-sidebar-body"></div>
+                    </div>
+                    <div class="ui wide right sidebar" id="right-sidebar">
+                        <div class='ui basic segment head'>
+                            <div class="ui icon button" id="right-sidebar-chevron">
+                                <i class="double angle right icon invisible"></i>
+                            </div>
+                            Right Panel
+                        </div>
+                        <div class="ui basic segment" id="right-sidebar-body"></div>
+                    </div>
+
+                    <div class="pusher">
+                        <!-- Page Contents -->
+                        <div class="ui page-container">
+                            <div class="ui page" id="stage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui basic segment" id="footer-bar">
+            </div>
+        </div>
+    </body>
+
+    <!-- Setup UI -->
+    <script>
+        $ ('.ui.sidebar')
+            .sidebar ({ context: $('#app') })
+            .sidebar ('setting', 'dimPage', false)
+            .sidebar ('setting', 'closable', false)
+            .sidebar ('setting', 'transition', 'overlay')
+
+        $ ('#left-sidebar-button, #left-sidebar-chevron').click (function () {
+            $ ('#left-sidebar-button').toggleClass ('active')
+            $ ('#left-sidebar-button > i.double').toggleClass ('invisible')
+            $ ('#left-sidebar-chevron > i').toggleClass ('invisible')
+            $ ('#left-sidebar')
+                .sidebar ('toggle');
+        })
+        $ ('#right-sidebar-button, #right-sidebar-chevron').click (function () {
+            $ ('#right-sidebar-button').toggleClass ('active')
+            $ ('#right-sidebar-button > i.double').toggleClass ('invisible')
+            $ ('#right-sidebar-chevron > i').toggleClass ('invisible')
+            $ ('#right-sidebar')
+                .sidebar ('toggle');
+        })
+    </script>
+
+    <!-- Main Application Script -->
+    <script src="./dist/bundle.js" type="text/javascript"></script>
+</html>
