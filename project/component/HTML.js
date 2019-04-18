@@ -6,7 +6,9 @@
 
 export default class Html {
     constructor (config) {
-        config = this.setConfigDefaults (config, {
+        this._config = config;
+
+        config = this.setConfigDefaults ({
             parent: document.body,
         })
 
@@ -16,7 +18,6 @@ export default class Html {
         this.attr = {};
         this.prop = {};
         this.class = '';
-        this.autoRender = config.autoRender;
     }
 
     assignConfig (config) { Object.assign (this, config) }
@@ -48,8 +49,10 @@ export default class Html {
     render (parent) { this._render (parent); }
     renderToParent () { this.render (this.parent) };
 
-    setConfigDefaults (config, defaults, assign) {
-        let item, key;
+    setConfigDefaults (defaults, assign) {
+        let config, item, key;
+
+        config = this._config;
 
         if (!config) { config = {} }
 

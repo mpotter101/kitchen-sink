@@ -1,7 +1,9 @@
 // Import objects
-import Button from './component/Button'
-import Label from './component/Label'
-import Slider from './component/Slider'
+import Button from './component/Button';
+import Label from './component/Label';
+import Slider from './component/Slider';
+import Input from './component/Input';
+import InputSlider from './component/InputSlider'
 
 // Variables shared across instances
 
@@ -22,7 +24,7 @@ export default class App {
             class: 'ui button circular',
             parent: $ ('#left-sidebar-body'),
             prop: { dataValue: 43 },
-            onClick: this.onComplexButtonClick
+            onClick: (data) => { this.onComplexButtonClick (data) }
         })
 
         // console.log ('Rendering a button twice?')
@@ -74,6 +76,64 @@ export default class App {
             class: 'ui slider complex',
             onInput: (data) => { this.onComplexSliderInput (data) }
         })
+
+        console.log ('Input')
+        console.log ('\tCreate bare-minimum input')
+        let input = new Input ({
+            parent: $ ('#left-sidebar-body'),
+        })
+
+        console.log ('\tCreating complex input')
+        let complexInput = new Input ({
+            parent: $ ('#left-sidebar-body'),
+            prop: {
+                type: 'number',
+                value: 100,
+                placeholder: 'Number Field'
+            },
+            class: 'ui input complex',
+            onInput: (data) => { data.type = 'input'; this.onComplexInputInput (data); },
+            onEnter: (data) => { data.type = 'enter'; this.onComplexInputInput (data); }
+        })
+
+        console.log ('\tTesting Input field getters and setters')
+        complexInput.setValue (123);
+        console.log (complexInput.getValue ())
+        input.setValue ('Zero');
+        console.log (input.getValue ())
+
+        console.log ('Input Slider');
+        console.log ('\tCreating bare-minimum input slider');
+        let inputSlider = new InputSlider ({
+            parent: $ ('#left-sidebar-body'),
+        })
+
+        let complexInputSlider = new InputSlider ({
+            parent: $ ('#left-sidebar-body'),
+            class: 'ui input-slider complex',
+            label: {
+                content: 'Rabbits'
+            },
+            input: {
+                prop: {
+                    value: 25
+                }
+            },
+            slider: {
+                prop: {
+                    min: 10,
+                    max: 100000,
+                    step: 0.001,
+                    value: 50
+                }
+            },
+            onInput: (data) => { this.onComplexInputSliderInput (data); },
+            onEnter: (data) => { this.onComplexInputSliderInput (data); },
+            onSlider: (data) => { this.onComplexInputSliderInput (data); },
+        })
+
+        inputSlider.setValue (88);
+        complexInputSlider.setValue (3404.867);
     }
 
     onComplexButtonClick (data) {
@@ -86,5 +146,15 @@ export default class App {
         console.log ('App is handling complex slider input');
         console.log ('Data:', data);
         console.log (data.target.getValue ())
+    }
+
+    onComplexInputInput (data) {
+        console.log ('App is handling complex input input');
+        console.log ('Data:', data);
+    }
+
+    onComplexInputSliderInput (data) {
+        console.log ('App is handling complex input-slider input')
+        console.log ('Data:', data);
     }
 }

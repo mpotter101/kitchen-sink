@@ -13,7 +13,7 @@ export default class Slider extends Html {
         super (config);
 
         // Make sure the config has certain properties
-        config = this.setConfigDefaults (config, {
+        config = this.setConfigDefaults ({
             onInput: (data) => { console.log ('Input', data) },
             prop: {
                 min: 1,
@@ -42,6 +42,7 @@ export default class Slider extends Html {
     getValue () { return Number ( this.node.prop ('value') ) }
 
     setValue (value) {
+        value = value.toString ()
         this.node.prop ( { value } )
     }
 }

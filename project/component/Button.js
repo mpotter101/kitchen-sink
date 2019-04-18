@@ -13,7 +13,7 @@ export default class Button extends Html {
         super (config);
 
         // Make sure the config has certain properties
-        config = this.setConfigDefaults (config, {
+        config = this.setConfigDefaults ({
             onClick: (data) => { console.log ('clicked', data) },
             class: 'ui button',
             label: 'Click Me!'
