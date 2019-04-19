@@ -3,7 +3,7 @@ import Button from './component/Button';
 import Label from './component/Label';
 import Slider from './component/Slider';
 import Input from './component/Input';
-import InputSlider from './component/InputSlider'
+import InputSlider from './component/InputSlider';
 
 // Variables shared across instances
 
@@ -98,9 +98,9 @@ export default class App {
 
         console.log ('\tTesting Input field getters and setters')
         complexInput.setValue (123);
-        console.log (complexInput.getValue ())
+        console.log ('\t', complexInput.getValue ())
         input.setValue ('Zero');
-        console.log (input.getValue ())
+        console.log ('\t', input.getValue ())
 
         console.log ('Input Slider');
         console.log ('\tCreating bare-minimum input slider');
@@ -112,7 +112,8 @@ export default class App {
             parent: $ ('#left-sidebar-body'),
             class: 'ui input-slider complex',
             label: {
-                content: 'Rabbits'
+                content: 'Rabbits',
+                suffix: '<sub>(Ru)</sub>'
             },
             input: {
                 prop: {
@@ -132,8 +133,11 @@ export default class App {
             onSlider: (data) => { this.onComplexInputSliderInput (data); },
         })
 
+        console.log ('\t', 'Testing setting and getting input slider values')
         inputSlider.setValue (88);
         complexInputSlider.setValue (3404.867);
+        console.log ('\t', inputSlider.getValue ());
+        console.log ('\t', complexInputSlider.getValue ());
     }
 
     onComplexButtonClick (data) {
@@ -158,3 +162,18 @@ export default class App {
         console.log ('Data:', data);
     }
 }
+
+/*
+
+    HTML Elements:
+        Group
+
+    SVG Elements:
+        SVG
+        SvgArea
+        SvgLabel
+        SvgLine
+        SvgBox
+        SvgGraph !!! Very complicated. Will require a series of objects
+
+*/

@@ -26,35 +26,26 @@ export default class InputSlider extends Html {
                 content: 'Hello World',
                 class: 'ui label'
             },
-            slider: {
-
-            },
-            input: {
-                onInput: (data) => { this.inputHandler (data); },
-                onEnter: (data) => { this.enterHandler (data); },
-            }
+            slider: {},
+            input: {}
         })
 
         // Assign properties from config and render our dom
         this.assignConfig (config);
         this.renderToParent ();
 
-
-        // Create our child objects
+        // Create child objects
         config.label.parent = this.node.find ('.ui.header');
         this.label = new Label (config.label)
 
         config.slider.parent = this.node.find ('.ui.input-slider'),
-        config.slider.onInput = (data) => { this.sliderHandler (data); },
+        config.slider.onInput = (data) => { this.sliderHandler (data); };
         this.slider = new Slider (config.slider)
 
         config.input.parent = this.node.find ('.ui.input-slider'),
-        config.input.onInput = (data) => { this.inputHandler (data); },
-        config.input.onEnter = (data) => { this.enterHandler (data); },
+        config.input.onInput = (data) => { this.inputHandler (data); };
+        config.input.onEnter = (data) => { this.enterHandler (data); };
         this.input = new Input (config.input)
-
-        console.log ('Slider:', this.slider)
-        console.log ('Input:', this.input)
     }
 
     sliderHandler (event) {
@@ -67,7 +58,6 @@ export default class InputSlider extends Html {
             value: this.slider.getValue (),
             event: event
         })
-
     }
 
     inputHandler (event) {
@@ -107,4 +97,6 @@ export default class InputSlider extends Html {
         this.input.setValue (value);
         this.slider.setValue (value)
     }
+
+    getValue () { return this.input.getValue () }
 }
