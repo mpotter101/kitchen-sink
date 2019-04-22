@@ -111,8 +111,6 @@ export default class Tabber extends Html {
             item.content.node.removeClass ('active');
         })
 
-        console.log ('setting tab as active')
-
         // Activate the given index
         this.tabs [index].button.node.addClass ('active');
         this.tabs [index].content.node.addClass ('active');
@@ -121,16 +119,11 @@ export default class Tabber extends Html {
     }
 
     tabChangeHandler (data) {
-        console.log (data.target.label)
-        let tab = this.getTabByName (data.target.label);
-
-        console.log (tab)
-
         this.onTabChange ({
             event: data.event,
             target: this,
             node: this.node,
-            tab: tab
+            tab: this.getTabByName (data.target.label)
         })
     }
 }

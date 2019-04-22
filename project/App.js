@@ -7,12 +7,17 @@ import InputSlider from './component/InputSlider';
 import Group from './component/Group';
 import Tabber from './component/Tabber';
 
+import SvgArea from './component/SvgArea';
+
 // Variables shared across instances
 
 // The starting point for the application
 export default class App {
     constructor (config) {
         console.log ('App is starting! Config:', config)
+
+        console.log ('-----------')
+        console.log  ('HTML Elements')
 
         console.log ('Button')
         console.log ('\tCreating bare-minimum button')
@@ -168,18 +173,30 @@ export default class App {
         console.log ('\t', 'Creating a bare-minimum tabber')
         let tabber = new Tabber ({
             parent: $ ('#right-sidebar-body')
-        })
+        });
 
         console.log ('\t', 'Creating a complex tabber')
         let complexTabber = new Tabber ({
             parent: $ ('#right-sidebar-body'),
             tabs: [
+                'Graph',
                 'SVG',
-                'Graph'
             ],
             class: 'ui complex tabber',
-            activeTab: 1
-        })
+            activeTab: 1,
+            onTabChange: (data) => { this.onComplexTabberChange (data); },
+        });
+
+        console.log ('Adding content to tabber');
+        let tabbedInputSlider = new InputSlider ();
+        complexTabber.addContent ('Graph', tabbedInputSlider.node);
+        tabbedInputSlider.setValue (25);
+
+        console.log ('End of HTML elements');
+        console.log ('-----------');
+        console.log ('SVG Elements');
+
+        let svgArea = new SvgArea ();
     }
 
     onComplexButtonClick (data) {
@@ -203,13 +220,15 @@ export default class App {
         console.log ('App is handling complex input-slider input')
         console.log ('Data:', data);
     }
+
+    onComplexTabberChange (data) {
+        console.log ('App is handling complex tabber change')
+        console.log ('Data:', data);
+    }
 }
 
 /*
     Stuff that is left:
-
-    HTML Elements:
-        Tabber
 
     SVG Elements:
         SVG
