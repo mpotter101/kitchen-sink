@@ -5,6 +5,7 @@ import Slider from './component/Slider';
 import Input from './component/Input';
 import InputSlider from './component/InputSlider';
 import Group from './component/Group';
+import Tabber from './component/Tabber';
 
 // Variables shared across instances
 
@@ -161,8 +162,24 @@ export default class App {
         console.log ('\t', 'Testing adding content to groups')
         let groupInputSlider = new InputSlider ()
         groupInputSlider.setValue (50);
-
         complexGroup.addContent (groupInputSlider.node);
+
+        console.log ('Tabber')
+        console.log ('\t', 'Creating a bare-minimum tabber')
+        let tabber = new Tabber ({
+            parent: $ ('#right-sidebar-body')
+        })
+
+        console.log ('\t', 'Creating a complex tabber')
+        let complexTabber = new Tabber ({
+            parent: $ ('#right-sidebar-body'),
+            tabs: [
+                'SVG',
+                'Graph'
+            ],
+            class: 'ui complex tabber',
+            activeTab: 1
+        })
     }
 
     onComplexButtonClick (data) {
@@ -189,9 +206,9 @@ export default class App {
 }
 
 /*
+    Stuff that is left:
 
     HTML Elements:
-        Group
         Tabber
 
     SVG Elements:

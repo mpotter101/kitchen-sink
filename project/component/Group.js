@@ -34,7 +34,7 @@ export default class Group extends Html {
 
     render (parent) {
         this.template = `
-            <div class=${this.class}>
+            <div>
                 <div class="label">
                     <div>
                         <label></label>
