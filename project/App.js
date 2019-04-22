@@ -4,6 +4,7 @@ import Label from './component/Label';
 import Slider from './component/Slider';
 import Input from './component/Input';
 import InputSlider from './component/InputSlider';
+import Group from './component/Group';
 
 // Variables shared across instances
 
@@ -138,6 +139,30 @@ export default class App {
         complexInputSlider.setValue (3404.867);
         console.log ('\t', inputSlider.getValue ());
         console.log ('\t', complexInputSlider.getValue ());
+
+        console.log ('Group')
+        console.log ('\t', 'Creating bare-minimum group')
+        let group = new Group ({
+            parent: $ ('#left-sidebar-body')
+        })
+
+        console.log ('\t', 'Create complex group')
+        let complexGroup = new Group ({
+            parent: $ ('#left-sidebar-body'),
+            class: 'ui segment group complex',
+            label: {
+                class: 'ui complex label',
+                prefix: 'Cool:',
+                content: 'Group',
+                suffix: '<sub>(YO)</sub>'
+            }
+        })
+
+        console.log ('\t', 'Testing adding content to groups')
+        let groupInputSlider = new InputSlider ()
+        groupInputSlider.setValue (50);
+
+        complexGroup.addContent (groupInputSlider.node);
     }
 
     onComplexButtonClick (data) {
@@ -167,6 +192,7 @@ export default class App {
 
     HTML Elements:
         Group
+        Tabber
 
     SVG Elements:
         SVG

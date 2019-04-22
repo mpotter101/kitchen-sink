@@ -21,7 +21,7 @@ export default class InputSlider extends Html {
             onSlider: (data) => { console.log ('User moved slider: ', data) },
             onEnter: (data) => { console.log ('User pressed enter in input: ', data) },
             template: '<div><div class="ui header"></div><div class="ui input-slider"></div>',
-            class: 'ui',
+            class: 'ui input-slider',
             label: {
                 content: 'Hello World',
                 class: 'ui label'
