@@ -197,6 +197,7 @@ export default class App {
         console.log ('SVG Elements');
 
         let svgArea = new SvgArea ();
+        complexTabber.addContent ('SVG', svgArea.node)
     }
 
     onComplexButtonClick (data) {

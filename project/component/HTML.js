@@ -32,9 +32,12 @@ export default class Html {
         this.node = $ (this.template);
 
         // assign attributes
+        // Attributes are assigned first since they must be strings
         this.node.attr (this.attr);
 
         // assign properties
+        // prop and attr can assign the same things to an element,
+        // but prop allows for non-string values.
         this.node.prop (this.prop);
 
         // add styling classes
