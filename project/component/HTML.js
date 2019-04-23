@@ -6,6 +6,7 @@
 
 export default class Html {
     constructor (config) {
+        if (!config) { config = {} }
         this._config = config;
 
         config = this.setConfigDefaults ({
@@ -17,6 +18,7 @@ export default class Html {
         this.parent = $ (config.parent);
         this.attr = {};
         this.prop = {};
+        this.css = {};
         this.class = '';
     }
 
@@ -31,6 +33,7 @@ export default class Html {
         // convert template html into a node
         this.node = $ (this.template);
 
+
         // assign attributes
         // Attributes are assigned first since they must be strings
         this.node.attr (this.attr);
@@ -40,11 +43,14 @@ export default class Html {
         // but prop allows for non-string values.
         this.node.prop (this.prop);
 
+        // Apply inline styling
+        this.node.css (this.css);
+
         // add styling classes
         this.node.addClass (this.class);
-
-        // Append object to parent once ready
-        this.parent.append (this.node);
+        
+        // Append object to parent
+        this.parent.append (this.node [0]);
 
         this._rendered = true;
     }

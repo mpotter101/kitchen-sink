@@ -8,6 +8,7 @@ import Group from './component/Group';
 import Tabber from './component/Tabber';
 
 import SvgArea from './component/SvgArea';
+import SvgLabel from './component/SvgLabel';
 
 // Variables shared across instances
 
@@ -196,8 +197,37 @@ export default class App {
         console.log ('-----------');
         console.log ('SVG Elements');
 
+        console.log ('Svg Area');
+        console.log ('\t','Creating bare-minimum svg element')
         let svgArea = new SvgArea ();
-        complexTabber.addContent ('SVG', svgArea.node)
+        complexTabber.addContent ('SVG', svgArea.node);
+
+        console.log ('\t','Creating a complex svg element')
+        let complexSvgArea = new SvgArea ({
+            class: 'ui complex svg',
+            svg: {
+                width: '100%',
+                height: 250,
+            },
+        })
+        complexTabber.addContent ('SVG', complexSvgArea.node);
+
+        console.log ('Svg Label');
+        console.log ('\t', 'Creating a bare-minimum Svg Label');
+        let svgLabel = new SvgLabel ({
+            parent: complexSvgArea.node
+        });
+
+        console.log ('\t', 'Creating a complex Svg Label');
+        let complexSvgLabel = new SvgLabel ({
+            parent: complexSvgArea.node,
+            svg: {
+                x: 50,
+                y: 150
+            },
+            innerHTML: 'This is a custom svg label object',
+            class: 'ui complex svg label'
+        })
     }
 
     onComplexButtonClick (data) {
@@ -232,8 +262,6 @@ export default class App {
     Stuff that is left:
 
     SVG Elements:
-        SVG
-        SvgArea
         SvgLabel
         SvgLine
         SvgBox

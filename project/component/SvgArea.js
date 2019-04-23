@@ -13,11 +13,8 @@ export default class SvgArea extends Svg {
 
         // Make sure config has certain properties
         config = this.setConfigDefaults ({
-            prop: {
-                width: 200,
-                height: 200
-            },
-            template: '<svg></svg>'
+            element: 'svg',
+            class: 'ui svg'
         })
 
         // Assign config and render
