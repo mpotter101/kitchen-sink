@@ -6,7 +6,7 @@
 */
 
 import Html from './HTML'
-import Label from './label'
+import Label from './Label'
 
 export default class Group extends Html {
     constructor (config) {
