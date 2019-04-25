@@ -1,6 +1,7 @@
 /*
 
     Draws a grid of lines over an area
+    Manages updating the look of that grid
 
 */
 
@@ -17,7 +18,8 @@ export default class SvgGrid extends Svg {
             segments: 3,
             svg: {
                 width: 100,
-                height: 100
+                height: 100,
+                x: 10, y: 10
             }
         })
 
@@ -48,7 +50,7 @@ export default class SvgGrid extends Svg {
         index = 1;
         end = this.segments + 1;
         while (index < end) {
-            y1 = index * increment;
+            y1 = index * increment + this.top;
             y2 = y1;
 
             line = new SvgLine ({
@@ -80,7 +82,7 @@ export default class SvgGrid extends Svg {
         index = 1;
         end = this.segments + 1;
         while (index < end) {
-            x1 = index * increment;
+            x1 = index * increment + this.left;
             x2 = x1;
 
             line = new SvgLine ({
@@ -91,7 +93,7 @@ export default class SvgGrid extends Svg {
                     'stroke-width': this.svg ['stroke-width'],
                     x1, x2, y1, y2
                 }
-            })
+            });
 
             this.columns.push (line);
 

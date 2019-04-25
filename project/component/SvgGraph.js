@@ -26,7 +26,7 @@ export default class SvgGraph extends Svg {
                     title: 'Advanced D&D Classes',
                     minValue: 1,
                     maxValue: 5,
-                    labelList: [
+                    labels: [
                         'Fighter',
                         'Wizard',
                         'Rogue',
@@ -45,7 +45,7 @@ export default class SvgGraph extends Svg {
                     title: 'Monsters defeated',
                     minValue: 1,
                     maxValue: 10,
-                    labelList: [
+                    labels: [
                         'none', 'just one',
                         'a few', 'several',
                         'plenty', 'bunches',
@@ -57,7 +57,7 @@ export default class SvgGraph extends Svg {
             svg: {
                 width: 100,
                 height: 100,
-                x: 10, y: 10,
+                x: 50, y: 50,
             },
             box: {
                 svg: {
@@ -72,7 +72,6 @@ export default class SvgGraph extends Svg {
                     fill: '#bebbc1',
                     stroke: '#bebbc1',
                     'stroke-width': 1,
-                    x: 10, y: 10
                 }
             }
         });
@@ -99,6 +98,8 @@ export default class SvgGraph extends Svg {
         this._grid.parent = this.node
         this._grid.svg.width = this.svg.width;
         this._grid.svg.height = this.svg.height;
+        this._grid.svg.x = this.svg.x;
+        this._grid.svg.y = this.svg.y;
         this.grid = new SvgGrid (this._grid);
 
             // Create Axes
