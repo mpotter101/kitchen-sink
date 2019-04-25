@@ -15,19 +15,24 @@ export default class SvgGrid extends Svg {
         config = this.setConfigDefaults ({
             element: 'g',
             segments: 3,
+            svg: {
+                width: 100,
+                height: 100
+            }
         })
 
         this.assignConfig (config);
         this.renderToParent ();
 
         // Figure out some coordinates to make child creation easier
-        this.top = this.node [0].getBoundingClientRect ().y;
-        this.bottom = this.node [0].getBoundingClientRect ().y + this.node.height ();
-        this.left = this.node [0].getBoundingClientRect ().x;
-        this.right = this.node [0].getBoundingClientRect ().x + this.node.width ();
+        this.top = this.svg.y;
+        this.bottom = this.svg.y + this.svg.height;
+        this.left = this.svg.x;
+        this.right = this.svg.x + this.svg.width;
 
         // Create child objects
         this.createRows ();
+        this.createColumns ();
     }
 
     createRows () {
@@ -38,7 +43,7 @@ export default class SvgGrid extends Svg {
         x1 = this.left;
         x2 = this.right;
 
-        increment = this.height / this.segments;
+        increment = this.svg.height / this.segments;
 
         index = 1;
         end = this.segments + 1;
@@ -55,12 +60,42 @@ export default class SvgGrid extends Svg {
                     x1, x2, y1, y2
                 }
             })
+
+            this.rows.push (line);
+
             index++;
         }
-
     }
 
     createColumns () {
+        // Columns only need their x coordinate moved
+        this.columns = [];
 
+        let end, height, increment, index, line, width, x1, x2, y1, y2;
+        y1 = this.top;
+        y2 = this.bottom;
+
+        increment = this.svg.width / this.segments;
+
+        index = 1;
+        end = this.segments + 1;
+        while (index < end) {
+            x1 = index * increment;
+            x2 = x1;
+
+            line = new SvgLine ({
+                parent: this.node,
+                svg: {
+                    fill: this.svg.fill,
+                    stroke: this.svg.stroke,
+                    'stroke-width': this.svg ['stroke-width'],
+                    x1, x2, y1, y2
+                }
+            })
+
+            this.columns.push (line);
+
+            index++;
+        }
     }
 }

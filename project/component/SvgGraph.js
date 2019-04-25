@@ -15,8 +15,10 @@ import SvgGrid from './SvgGrid';
 
 export default class SvgGraph extends Svg {
     constructor (config) {
+        // Run svg object constructor
         super (config);
 
+        // Make sure the config has certain properties
         config = this.setConfigDefaults ({
             element: 'g',
             xAxis: {
@@ -69,7 +71,8 @@ export default class SvgGraph extends Svg {
                 svg: {
                     fill: '#bebbc1',
                     stroke: '#bebbc1',
-                    'stroke-width': 1
+                    'stroke-width': 1,
+                    x: 10, y: 10
                 }
             }
         });
@@ -94,6 +97,8 @@ export default class SvgGraph extends Svg {
             // Create grid
         this._grid = this.grid;
         this._grid.parent = this.node
+        this._grid.svg.width = this.svg.width;
+        this._grid.svg.height = this.svg.height;
         this.grid = new SvgGrid (this._grid);
 
             // Create Axes
