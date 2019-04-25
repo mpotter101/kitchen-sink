@@ -21,5 +21,5 @@ export default class SvgLabel extends Svg {
 
         this.assignConfig (config);
         this.renderToParent ();
-    }
+    }    
 }

@@ -9,6 +9,8 @@ import Tabber from './component/Tabber';
 
 import SvgArea from './component/SvgArea';
 import SvgLabel from './component/SvgLabel';
+import SvgLine from './component/SvgLine';
+import SvgBox from './component/SvgBox';
 
 // Variables shared across instances
 
@@ -227,7 +229,52 @@ export default class App {
             },
             innerHTML: 'This is a custom svg label object',
             class: 'ui complex svg label'
-        })
+        });
+
+        console.log ('Svg Line');
+        console.log ('\t', 'Creating bare-minimum Svg Line');
+        let svgLine = new SvgLine ({
+            parent: complexSvgArea.node,
+        });
+
+        console.log ('\t', 'Creating complex svg line');
+        let complexSvgLine = new SvgLine ({
+            parent: complexSvgArea.node,
+            class: 'ui complex line',
+            svg: {
+                x1: 50, x2: 250,
+                y1: 155, y2: 165,
+                'stroke-width': 2,
+                stroke: 'white',
+            }
+        });
+
+        console.log ('\t', 'Setting position of line to above complex svg label');
+                                //  x1   x2  y1   y2
+        complexSvgLine.setPosition (50, 230, 125, 125);
+        console.log ('\t', 'Moving complex line by 50 units');
+        complexSvgLine.moveBy (50, 50);
+
+        console.log ('Svg Box');
+        console.log ('\t', 'Creating bare-minimum svg box');
+        let svgBox = new SvgBox ({
+            parent: complexSvgArea.node,
+        });
+
+        console.log ('\t', 'Creating complex svg box');
+        let complexSvgBox = new SvgBox ({
+            parent: complexSvgArea.node,
+            svg: {
+                x: 10, y: 220,
+                width: 295, height: 10,
+                fill: '#4b0a31',
+                stroke: '#feddff',
+                'stroke-width': 3
+            }
+        });
+
+        console.log ('Svg Graph');
+        console.log ('\t', 'Creating a bare-minimum svg graph');
     }
 
     onComplexButtonClick (data) {
@@ -262,9 +309,6 @@ export default class App {
     Stuff that is left:
 
     SVG Elements:
-        SvgLabel
-        SvgLine
-        SvgBox
         SvgGraph !!! Very complicated. Will require a series of objects
 
 */

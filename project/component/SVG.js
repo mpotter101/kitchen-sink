@@ -64,13 +64,10 @@ export default class Svg extends Html {
 
     _getNamespaceForAttribute (attr) {
         switch (attr) {
-            case 'x':
-            case 'y':
-            case 'height':
-            case 'width':
-                return null;
-            default:
+            case 'some-property':
                 return 'http://www.w3.org/1999/xlink'
+            default:
+                return null;
         }
     }
 
