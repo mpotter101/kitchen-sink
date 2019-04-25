@@ -24,7 +24,7 @@
     "eslint-config-google": "^0.7.1"
   },
   "scripts": {
-    "start": "npx live-server --port=3000 --watch=./dist",
+    "start": "npx live-server --port=3000 --watch= --ignore=/node_modules/ --wait=500",
     "start-debug": "babel-node app.js --inspect-brk --presets env",
     "start-dev": "babel-watch app.js --presets env",
     "nodemon": "nodemon app.js --exec babel-node --presets env",

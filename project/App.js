@@ -11,6 +11,7 @@ import SvgArea from './component/SvgArea';
 import SvgLabel from './component/SvgLabel';
 import SvgLine from './component/SvgLine';
 import SvgBox from './component/SvgBox';
+import SvgGraph from './component/SvgGraph';
 
 // Variables shared across instances
 
@@ -275,6 +276,23 @@ export default class App {
 
         console.log ('Svg Graph');
         console.log ('\t', 'Creating a bare-minimum svg graph');
+        let graphSvgArea = new SvgArea ({
+            svg: {
+                width: '100%',
+                height: 300
+            }
+        })
+
+        complexTabber.addContent ('Graph', graphSvgArea.node);
+        complexTabber.changeTab ('Graph')
+
+        let graph = new SvgGraph ({
+            parent: graphSvgArea.node
+        });
+
+        // Open the right sidebar
+        $ ('#right-sidebar')
+            .sidebar ('toggle');
     }
 
     onComplexButtonClick (data) {

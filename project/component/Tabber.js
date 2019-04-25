@@ -89,7 +89,7 @@ export default class Tabber extends Html {
             tabIndex = this.getTabByName (tabIndex).index;
         }
 
-        o.setActiveTab (tabIndex)
+        this.setActiveTab (tabIndex)
     }
 
     getTabByName (name) {
