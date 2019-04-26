@@ -177,7 +177,7 @@ export default class SvgGraph extends Svg {
         this._xAxis.bottom.title.svg ['transform'] = 'translate(' + titleX + ' ' + titleY + ')';
         this._xAxis.bottom.title.svg ['text-anchor'] = 'middle';
 
-                // Create the actual SvgAxis objects
+            // Create the actual SvgAxis objects
         this.yAxis.left = new SvgAxis (this._yAxis.left);
         this.yAxis.right = new SvgAxis (this._yAxis.right);
         this.xAxis.bottom = new SvgAxis (this._xAxis.bottom);
@@ -187,5 +187,5 @@ export default class SvgGraph extends Svg {
     findValueOfX (axis, x) {}
 
     findYOfValue (axis, value) {}
-    findValueOfY (axis, x) {}
+    findValueOfY (axis, y) {}
 }
