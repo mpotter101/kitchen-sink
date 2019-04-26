@@ -291,8 +291,7 @@ export default class App {
         });
 
         // Open the right sidebar
-        $ ('#right-sidebar')
-            .sidebar ('toggle');
+        $ ('#right-sidebar-button').click ();
     }
 
     onComplexButtonClick (data) {
@@ -322,11 +321,3 @@ export default class App {
         console.log ('Data:', data);
     }
 }
-
-/*
-    Stuff that is left:
-
-    SVG Elements:
-        SvgGraph !!! Very complicated. Will require a series of objects
-
-*/
