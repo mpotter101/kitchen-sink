@@ -27,7 +27,7 @@ export default class SvgAxis extends Svg {
             title: {
                 innerHTML: 'Axis',
                 svg: {
-                    x: 10, y: 10
+                    x: 10, y: 25
                 }
             },
             svg: {
@@ -56,6 +56,10 @@ export default class SvgAxis extends Svg {
             case 'y': this.createYAxis (); break;
             default: console.warn ('Invalid axis type given. Accepted values: x, y');
         }
+
+        // Create title of axis
+        this.title.parent = this.node;
+        this.title = new SvgLabel (this.title)
     }
 
     createXAxis () {
@@ -63,6 +67,7 @@ export default class SvgAxis extends Svg {
         let x, y;
         let transform
 
+        // Create value labels
         this.labels.forEach ((item, index) => {
             transform = null;
             x = (increment * index) + this.svg.x
@@ -89,6 +94,7 @@ export default class SvgAxis extends Svg {
         let x, y;
         let transform
 
+        // Create value labels
         this.labels.forEach ((item, index) => {
             transform = null;
             x = this.svg.x;

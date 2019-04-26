@@ -24,8 +24,10 @@ export default class SvgGraph extends Svg {
             axisPadding: 13,
             xAxis: {
                 bottom: {
+                    titlePadding: 65,
                     title: {
                         innerHTML: 'Advanced D&D Classes',
+                        svg: {}
                     },
                     type: 'x',
                     minValue: 1,
@@ -42,8 +44,10 @@ export default class SvgGraph extends Svg {
             },
             yAxis: {
                 left: {
+                    titlePadding: 40,
                     title: {
-                        innerHTML: 'Play Time (hrs)'
+                        innerHTML: 'Play Time (hrs)',
+                        svg: {}
                     },
                     rotateLabels: false,
                     type: 'y',
@@ -52,8 +56,10 @@ export default class SvgGraph extends Svg {
                     svg: {}
                 },
                 right: {
+                    titlePadding: 90,
                     title: {
-                        innerHTML: 'Monsters Defeated'
+                        innerHTML: 'Monsters Defeated',
+                        svg: {}
                     },
                     rotateLabels: false,
                     type: 'y',
@@ -72,7 +78,7 @@ export default class SvgGraph extends Svg {
             svg: {
                 width: 150,
                 height: 150,
-                x: 50, y: 50,
+                x: 60, y: 50,
             },
             box: {
                 svg: {
@@ -127,23 +133,49 @@ export default class SvgGraph extends Svg {
                 // Assign initial svg properties to axes
                 // Make sure our labels are centered to each cell
                 // NOTE change the "- 10" to use a font size
+        let titleX, titleY;
+
+                // Y Axis Left
         this._yAxis.left.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
         this._yAxis.left.svg.x = this.svg.x - this.axisPadding;
         this._yAxis.left.svg.width = this.svg.width;
         this._yAxis.left.svg.height = this.svg.height;
         this._yAxis.left.svg ['text-anchor'] = 'end';
+                // Adjust the title of the axis to be in a sensible place
+        this._yAxis.left.title.svg.x = 0;
+        this._yAxis.left.title.svg.y = 0;
+        titleX = this.svg.x - this.axisPadding - this._yAxis.left.titlePadding;
+        titleY = this.svg.y + (this.svg.height / 2);
+        this._yAxis.left.title.svg ['transform'] = 'translate(' + titleX + ' ' + titleY + ') rotate(270)';
+        this._yAxis.left.title.svg ['text-anchor'] = 'middle';
 
+                // Y Axis Right
                 // Make sure our labels are centered to each cell
-        this._yAxis.right.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
         this._yAxis.right.svg.x = this.svg.x + this.svg.width + this.axisPadding;
+        this._yAxis.right.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
         this._yAxis.right.svg.width = this.svg.width;
         this._yAxis.right.svg.height = this.svg.height;
+                // Adjust the title of the axis to be in a sensible place
+        this._yAxis.right.title.svg.x = 0;
+        this._yAxis.right.title.svg.y = 0;
+        titleX = this.svg.x + this.svg.width + this.axisPadding + this._yAxis.right.titlePadding;
+        titleY = this.svg.y + (this.svg.height / 2);
+        this._yAxis.right.title.svg ['transform'] = 'translate(' + titleX + ' ' + titleY + ') rotate(90)';
+        this._yAxis.right.title.svg ['text-anchor'] = 'middle';
 
+                /// X Axis Bottom
                 // Adjust for the size of a cell so labels are centered
-        this._xAxis.bottom.svg.x = this.svg.x + ((this.svg.width / this._grid.segments) / 2 - 10)
+        this._xAxis.bottom.svg.x = this.svg.x + ((this.svg.width / this._grid.segments) / 2 - 10);
         this._xAxis.bottom.svg.y = this.svg.y + this.svg.height + this.axisPadding;
         this._xAxis.bottom.svg.width = this.svg.width;
         this._xAxis.bottom.svg.height = this.svg.height;
+                // Adjust the title of the axis to be in a sensible place
+        this._xAxis.bottom.title.svg.x = 0;
+        this._xAxis.bottom.title.svg.y = 0;
+        titleX = this.svg.x + (this.svg.width / 2)
+        titleY = this.svg.y + this.svg.height + this.axisPadding + this._xAxis.bottom.titlePadding;
+        this._xAxis.bottom.title.svg ['transform'] = 'translate(' + titleX + ' ' + titleY + ')';
+        this._xAxis.bottom.title.svg ['text-anchor'] = 'middle';
 
                 // Create the actual SvgAxis objects
         this.yAxis.left = new SvgAxis (this._yAxis.left);
