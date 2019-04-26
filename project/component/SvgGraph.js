@@ -135,6 +135,8 @@ export default class SvgGraph extends Svg {
     findValueOfY (axis, y) {}
 
     createXAxes () {
+        let titleX, titleY;
+        
         if (this._xAxis.bottom) {
             // X Axis Bottom
             // Assign parent to the axis
@@ -189,7 +191,7 @@ export default class SvgGraph extends Svg {
             // Y Axis Right
             // Assign parent to the axis
             this._yAxis.right.parent = this.node;
-            
+
             // Make sure our labels are centered to each cell
             this._yAxis.right.svg.x = this.svg.x + this.svg.width + this.axisPadding;
             this._yAxis.right.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
