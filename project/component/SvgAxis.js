@@ -23,6 +23,13 @@ export default class SvgAxis extends Svg {
             labels: [],
             labelCount: 5,
             type: 'x',
+            rotateLabels: true,
+            title: {
+                innerHTML: 'Axis',
+                svg: {
+                    x: 10, y: 10
+                }
+            },
             svg: {
                 x: 10, y: 10,
                 height: 100,
@@ -53,22 +60,54 @@ export default class SvgAxis extends Svg {
 
     createXAxis () {
         let increment = this.svg.width / this.labels.length;
+        let x, y;
+        let transform
+
         this.labels.forEach ((item, index) => {
-           this.labels [index] = new SvgLabel ({
-               content: item,
+            transform = null;
+            x = (increment * index) + this.svg.x
+            y = this.svg.y;
+
+            if (this.rotateLabels) {
+                transform = 'translate(' + x + ' ' + y + ') rotate(45)'
+            }
+            else { transform = 'translate(' + x + ' ' + y + ')' }
+
+            this.labels [index] = new SvgLabel ({
+               innerHTML: item,
                parent: this.node,
                svg: {
-                   x: (increment * index) + this.svg.x,
-                   y: this.svg.y
+                   x: 0, y: 0,
+                   transform
                }
-           })
+            })
         });
-
-        console.log (this.labels)
     }
 
     createYAxis () {
+        let increment = this.svg.height / this.labels.length;
+        let x, y;
+        let transform
 
+        this.labels.forEach ((item, index) => {
+            transform = null;
+            x = this.svg.x;
+            y = (increment * (this.labels.length - index)) + this.svg.y
+
+            if (this.rotateLabels) {
+                transform = 'translate(' + x + ' ' + y + ') rotate(45)'
+            }
+            else { transform = 'translate(' + x + ' ' + y + ')' }
+
+            this.labels [index] = new SvgLabel ({
+               innerHTML: item,
+               parent: this.node,
+               svg: {
+                   x: 0, y: 0,
+                   transform
+               }
+            })
+        });
     }
 
     generateLabels () {
@@ -78,7 +117,7 @@ export default class SvgAxis extends Svg {
 
         increment = (this.maxValue - this.minValue) / this.labelCount;
         index = 0;
-        end = this.labelCount - 2;
+        end = this.labelCount - 1;
 
         while (index < end) {
             this.labels.push ( (increment * index) + this.minValue );

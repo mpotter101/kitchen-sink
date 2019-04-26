@@ -21,9 +21,13 @@ export default class SvgGraph extends Svg {
         // Make sure the config has certain properties
         config = this.setConfigDefaults ({
             element: 'g',
+            axisPadding: 13,
             xAxis: {
                 bottom: {
-                    title: 'Advanced D&D Classes',
+                    title: {
+                        innerHTML: 'Advanced D&D Classes',
+                    },
+                    type: 'x',
                     minValue: 1,
                     maxValue: 5,
                     labels: [
@@ -33,30 +37,41 @@ export default class SvgGraph extends Svg {
                         'Dwarf',
                         'Elf'
                     ],
+                    svg: {}
                 }
             },
             yAxis: {
                 left: {
-                    title: 'Play Time (hrs)',
+                    title: {
+                        innerHTML: 'Play Time (hrs)'
+                    },
+                    rotateLabels: false,
+                    type: 'y',
                     minValue: 0,
                     maxValue: 100,
+                    svg: {}
                 },
                 right: {
-                    title: 'Monsters defeated',
+                    title: {
+                        innerHTML: 'Monsters Defeated'
+                    },
+                    rotateLabels: false,
+                    type: 'y',
                     minValue: 1,
-                    maxValue: 10,
+                    maxValue: 9,
                     labels: [
-                        'none', 'just one',
+                        'none',
                         'a few', 'several',
                         'plenty', 'bunches',
-                        'hundreds', 'too many to count',
+                        'hundreds', 'countless',
                         'literaly all'
-                    ]
+                    ],
+                    svg: {}
                 },
             },
             svg: {
-                width: 100,
-                height: 100,
+                width: 150,
+                height: 150,
                 x: 50, y: 50,
             },
             box: {
@@ -83,7 +98,6 @@ export default class SvgGraph extends Svg {
         // Modify sub-component configs to work as proper configs
 
         // Create child objects
-
             // Create background
         this._box = this.box;
         this._box.parent = this.node;
@@ -105,16 +119,41 @@ export default class SvgGraph extends Svg {
             // Create Axes
         this._yAxis = this.yAxis;
         this._xAxis = this.xAxis;
-
+                // Assign a parent to the axes
         this._yAxis.left.parent = this.node;
         this._yAxis.right.parent = this.node;
         this._xAxis.bottom.parent = this.node;
 
-        this.yAxis = { left: {}, right: {} };
-        this.xAxis = { bottom: {} };
+                // Assign initial svg properties to axes
+                // Make sure our labels are centered to each cell
+                // NOTE change the "- 10" to use a font size
+        this._yAxis.left.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
+        this._yAxis.left.svg.x = this.svg.x - this.axisPadding;
+        this._yAxis.left.svg.width = this.svg.width;
+        this._yAxis.left.svg.height = this.svg.height;
+        this._yAxis.left.svg ['text-anchor'] = 'end';
 
+                // Make sure our labels are centered to each cell
+        this._yAxis.right.svg.y = this.svg.y - ((this.svg.height / this._grid.segments) / 2 - 10);
+        this._yAxis.right.svg.x = this.svg.x + this.svg.width + this.axisPadding;
+        this._yAxis.right.svg.width = this.svg.width;
+        this._yAxis.right.svg.height = this.svg.height;
+
+                // Adjust for the size of a cell so labels are centered
+        this._xAxis.bottom.svg.x = this.svg.x + ((this.svg.width / this._grid.segments) / 2 - 10)
+        this._xAxis.bottom.svg.y = this.svg.y + this.svg.height + this.axisPadding;
+        this._xAxis.bottom.svg.width = this.svg.width;
+        this._xAxis.bottom.svg.height = this.svg.height;
+
+                // Create the actual SvgAxis objects
         this.yAxis.left = new SvgAxis (this._yAxis.left);
         this.yAxis.right = new SvgAxis (this._yAxis.right);
         this.xAxis.bottom = new SvgAxis (this._xAxis.bottom);
     }
+
+    findXOfValue (axis, value) {}
+    findValueOfX (axis, x) {}
+
+    findYOfValue (axis, value) {}
+    findValueOfY (axis, x) {}
 }
