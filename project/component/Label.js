@@ -45,4 +45,8 @@ export default class Label extends Html {
     setPrefix (prefix) { this.prefixNode.html (prefix); }
     setContent (content) { this.contentNode.html (content); }
     setSuffix (suffix) { this.suffixNode.html (suffix); }
+
+    getPrefix () { return this.prefixNode.html () }
+    getContent () { return this.contentNode.html () }
+    getSuffix () { return this.suffixNode.html () }
 }

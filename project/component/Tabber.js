@@ -116,14 +116,19 @@ export default class Tabber extends Html {
         this.tabs [index].content.node.addClass ('active');
 
         this.activeTab = index;
+        this.activeTabName = this.tabs [index].name
     }
 
     tabChangeHandler (data) {
+        let tab = this.getTabByName (data.target.label);
+        this.activeTab = tab.index;
+        this.activeTabName = tab.name;
+
         this.onTabChange ({
             event: data.event,
             target: this,
             node: this.node,
-            tab: this.getTabByName (data.target.label)
+            tab: tab
         })
     }
 }
