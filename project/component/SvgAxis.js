@@ -92,6 +92,8 @@ export default class SvgAxis extends Svg {
                }
             })
         });
+
+        console.log (this.labels)
     }
 
     createYAxis () {

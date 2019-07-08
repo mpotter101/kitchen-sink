@@ -102,6 +102,7 @@ export default class SvgGraph extends Svg {
         // Modify sub-component configs to work as proper configs
 
         // Create child objects
+
             // Create background
         this._box = this.box;
         this._box.parent = this.node;
