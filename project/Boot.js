@@ -1,7 +1,9 @@
 // import files needed here
+//import App from './Kitchen-Sink'
 import App from './App'
 
 // Create the App
-new App ({
+// Pass in schema for app here
+window.KccApp = new App ({
     foo: 'bar'
 })

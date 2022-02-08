@@ -2,11 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>ETX - Kitchen Sink</title>
+        <title>Character Creator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css" href="./lib/semantic-ui/semantic.css">
-        <link rel="stylesheet/less" type="text/css" href="./project/css/style.less" />
+        <link rel="stylesheet/less" type="text/css" href="./lib/css/style.less" />
+        <link rel="stylesheet/less" type="text/css" href="./lib/css/character-creator-style.less" />
 
         <!-- 3rd party dependencies -->
         <script src="./lib/jquery-3.4.0.min.js"></script>
@@ -18,7 +19,7 @@
     <body>
         <div class="ui segments controls">
             <div class="ui basic segment" id="header-bar">
-                Kitchen Sink - ETX Sim Components
+                Dev Tool: Keeperscape Animated Character Creator
             </div>
             <div class="ui basic segment body" id="body-bar">
                 <div class="ui basic segment tabs">
@@ -48,7 +49,8 @@
                             </div>
                             Right Panel
                         </div>
-                        <div class="ui basic segment" id="right-sidebar-body"></div>
+                        <div class="ui basic segment" id="right-sidebar-body">
+                        </div>
                     </div>
 
                     <div class="pusher">
@@ -90,5 +92,5 @@
     </script>
 
     <!-- Main Application Script -->
-    <script src="./dist/bundle.js" type="text/javascript"></script>
+    <script src="./bundle.js" type="text/javascript"></script>
 </html>
