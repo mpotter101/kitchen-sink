@@ -27,4 +27,8 @@ export default class Canvas extends Html {
     GetContext () {
         return this.node [0].getContext ('2d');
     }
+
+    ToDataURL (imageType) {
+        return this.node [0].toDataURL (imageType);
+    }
 }

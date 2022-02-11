@@ -58,4 +58,10 @@ export default class Input extends Html {
     setValue (value) {
         this.node.prop ( { value } )
     }
+
+    getIsCheckedAsBoolean () {
+        if (this.node [0].type == "checkbox") {
+            return (this.node [0].value == "checked")
+        }
+    }
 }

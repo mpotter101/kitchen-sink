@@ -1,7 +1,15 @@
+// Base Components
 import Canvas from './component/Canvas'
 import Input from './component/Input'
+import Button from './component/Button'
 
+// Managers
+import CharacterDataForm from './CharacterDataForm'
+
+// Upload an image
 // https://stackoverflow.com/questions/10906734/how-to-upload-image-into-html5-canvas
+
+// Export an image
 // https://stackoverflow.com/questions/923885/capture-html-canvas-as-gif-jpg-png-pdf
 
 export default class App {
@@ -11,9 +19,19 @@ export default class App {
         })
         this.ctx = this.canvas.GetContext();
 
+        this.imageDownloaderNode = $( document.createElement ('a') );
+
+        var leftSidebar = $('#left-sidebar-body');
+        var rightSidebar = $('#right-sidebar-body');
+
         this.imageLoader = new Input ({
-            parent: $('#right-sidebar-body'),
+            parent: rightSidebar,
             prop: {type: 'file'}
+        })
+        this.exportButton = new Button ({
+            parent: rightSidebar,
+            label: 'Export',
+            onClick: () => { this.ExportImage (); }
         })
 
         this.animations = ['idle', 'walk'];
@@ -24,6 +42,11 @@ export default class App {
         this.uploadedImages = {};
 
         this.imageLoader.node [0].addEventListener('change', (e) => this.HandleImage (e), false);
+
+        this.characterDataForm = new CharacterDataForm ({
+            targetNode: leftSidebar
+        });
+
     }
 
     PopulateImageData (img) {
@@ -46,5 +69,13 @@ export default class App {
             img.src = event.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
+    }
+
+    ExportImage () {
+        var img = this.canvas.ToDataURL ('image/png');
+        this.imageDownloaderNode [0].href = img;
+        this.imageDownloaderNode [0].download = "Chara.png";
+        console.log (img);
+        this.imageDownloaderNode [0].click ();
     }
 }

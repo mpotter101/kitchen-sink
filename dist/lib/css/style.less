@@ -241,7 +241,6 @@ body {
     border: 0.3px solid @text-color;
     color: @text-color;
     padding: 0.6em;
-    text-align: center;
 }
 
 // input slider
@@ -259,6 +258,23 @@ body {
 
     input[type="range"] {
         margin-right: 20px;
+    }
+}
+
+.ui.labeled-input {
+    display: inline-block;
+
+    .ui.header {
+        margin: 0;
+    }
+
+    .ui.label {
+        margin: 0;
+        padding-left: 0;
+    }
+
+    input.ui.input {
+        min-width: 100px;
     }
 }
 
@@ -428,7 +444,7 @@ svg {
 
 text {
     fill: @text-color !important;
-    
+
     &.y-axis {
         text-anchor: end;
     }
