@@ -1,10 +1,11 @@
 import Input from './component/Input'
 import LabeledInput from './component/LabeledInput'
 import Group from './component/Group'
+import Dropdown from './component/Dropdown'
 
 export default class CharacterDataForm {
     constructor (data) {
-        parent = data.targetNode;
+        parent = data.parent;
 
         /*
             Managed fields:
@@ -13,7 +14,6 @@ export default class CharacterDataForm {
                 Race,
                 Description
         */
-
 
         this.fields = {
             name: new LabeledInput ({ parent, label: {content: "Name"} }),
@@ -28,7 +28,11 @@ export default class CharacterDataForm {
                     label: {content: "Female"},
                     input: {prop: { type: "checkbox" }}
                 })
-            }
+            },
+            race: new Dropdown ({
+                parent,
+                options: ['Scaper', 'Horn Dog', 'Cyclops', 'Stalios']
+            })
         }
 
         this.sexGroup = new Group ({
