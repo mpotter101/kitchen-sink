@@ -11,18 +11,10 @@ module.exports = {
     },
     module: {
         loaders: [
-            // { test: /\.css$/, loader: 'style!css' },
-            // {
-            //     test: /\.scss$/,
-            //     loaders: ['style-loader', 'raw-loader', 'sass-loader']
-            // },
             {
                 test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'project'),
-                    // Resolve threejs
-                    // path.resolve(__dirname, 'node_modules/three'),
-                    // fs.realpathSync('./node_modules/three'),
                 ],
                 loader: 'babel-loader',
                 query: {
@@ -30,12 +22,5 @@ module.exports = {
                 }
             }
         ]
-    },
-    resolve: {
-        // Expose node modules to browser. Access via: import foo from 'bar'
-        alias: {
-            // lance: path.resolve(__dirname, 'node_modules/lance-gg/src/'),
-            // three: path.resolve(__dirname, 'node_modules/three/src/'),
-        }
     }
 };

@@ -6,6 +6,8 @@ import Tabber from './component/Tabber'
 // Managers
 import CharacterDataForm from './CharacterDataForm'
 import AnimationTabManager from './AnimationTabManager'
+import SpriteTabManager from './SpriteTabManager'
+import MetaTabManager from './MetaTabManager'
 
 export default class AppSetup {
     constructor () {
@@ -15,15 +17,16 @@ export default class AppSetup {
         var leftSidebar = $('#left-sidebar-body');
         var rightSidebar = $('#right-sidebar-body');
 
+
+        // Left Sidebar Managers
+        this.characterDataForm = new CharacterDataForm ({
+            parent: leftSidebar
+        });
+
+        // Right Sidebar Managers
         this.rightSidebarTabber = new Tabber ({
             parent: rightSidebar,
             tabs: ['Animation', 'Sprite', 'Meta']
-        })
-
-        this.exportButton = new Button ({
-            parent: rightSidebar,
-            label: 'Export',
-            onClick: () => { this.ExportImage (); }
         })
 
         this.animationTabManager = new AnimationTabManager ({
@@ -31,17 +34,12 @@ export default class AppSetup {
             ctx: this.ctx
         })
 
-        this.characterDataForm = new CharacterDataForm ({
-            parent: leftSidebar
-        });
+        this.spriteTabManager = new SpriteTabManager ({
+            parent: this.rightSidebarTabber.tabs [1].content.node,
+        })
 
-        this.animations = ['idle', 'walk'];
-        this.curAnimation = 'idle';
-        this.curFrame = 0;
-        this.curFrameDurMs = 300; //ms
-        this.maxFrame = 1;
-        this.uploadedImages = {};
-
-
+        this.metaTabManager = new MetaTabManager ({
+            parent: this.rightSidebarTabber.tabs [2].content.node,
+        })
     }
 }

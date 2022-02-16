@@ -8,13 +8,11 @@ import AppSetup from './AppSetup'
 // https://stackoverflow.com/questions/923885/capture-html-canvas-as-gif-jpg-png-pdf
 
 export default class App extends AppSetup {
-    
+    Export () {
+        // create files
+    }
 
-    ExportImage () {
-        var img = this.canvas.ToDataURL ('image/png');
-        this.imageDownloaderNode [0].href = img;
-        this.imageDownloaderNode [0].download = "Chara.png";
-        console.log (img);
-        this.imageDownloaderNode [0].click ();
+    Import () {
+        // load files
     }
 }

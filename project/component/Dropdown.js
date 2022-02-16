@@ -15,7 +15,7 @@ export default class Input extends Html {
 
         // Make sure the config has certain properties
         config = this.setConfigDefaults ({
-            onChange: (e) => { console.log ('Dropdown was changed') },
+            onChange: (val) => { console.log ('Dropdown was changed with a value of: ', val) },
             template: '<select></select>',
             class: 'ui select',
             options: ['one', 'two', 'three'],
@@ -25,8 +25,23 @@ export default class Input extends Html {
         this.assignConfig (config);
         this.renderToParent ();
 
+        this.setOptions (this.options);
 
-        this._options = this.options;
+        this.node.change ((e) => { this.OnChangeHandler (e); })
+    }
+
+    OnChangeHandler (e) {
+        this.onChange (this.node.val ());
+    }
+
+    getValue () {
+        return this.node.val ();
+    }
+
+    setOptions (options) {
+        this.node [0].innerHTML = '';
+        this._options = options;
+        this.options = [];
         this._options.forEach ((item, index) => {
             this.options [index] = new DropdownOption ({
                 parent: this.node,
@@ -34,11 +49,5 @@ export default class Input extends Html {
                 content: item
             })
         })
-
-        this.node.change ((e) => { this.OnChangeHandler (e); })
-    }
-
-    OnChangeHandler (e) {
-        this.onChange ();
     }
 }
